@@ -16,17 +16,24 @@ function displayResults(responseJson) {
   console.log(responseJson);
   $('#results-list').empty();
   // iterate through the items array
-  for (let i = 0; i < responseJson.data.length; i++){
-    // for each video object in the items 
-    //array, add a list item to the results 
-    //list with the video title, description,
-    //and thumbnail
+  let searchResults = responseJson.total;
+  if (searchResults == 0) {
     $('#results-list').append(
-      `<li><h3>${responseJson.data[i].name}</h3>
-      <p>${responseJson.data[i].description}</p>
-      <p>${responseJson.data[i].url}</p>
-      </li>`
-    )};
+      `<li><h3>No results found</h3></li>`
+    )}
+  else {
+    for (let i = 0; i < responseJson.data.length; i++){
+      // for each video object in the items 
+      //array, add a list item to the results 
+      //list with the video title, description,
+      //and thumbnail
+        $('#results-list').append(
+        `<li><h3>${responseJson.data[i].name}</h3>
+        <p>${responseJson.data[i].description}</p>
+        <p>${responseJson.data[i].url}</p>
+        </li>`
+        )}
+    }
   //display the results section  
   $('#results').removeClass('hidden');
 };
