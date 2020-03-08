@@ -73,7 +73,7 @@ function watchForm() {
     event.preventDefault();
     if (x<max_fields) {
       x++;
-      $(wrapper).append(`<div><input type="text" name="search-state[]" id="js-search-state" placeholder="State (e.g. CA)" maxlength="2"><a href="#" class="remove_field">Remove</a></div>`);
+      $(wrapper).append(`<div><input type="text" name="search-state[]" class="js-search-state" placeholder="State (e.g. CA)" maxlength="2"><a href="#" class="remove_field">Remove</a></div>`);
     }
   });
   $(wrapper).on("click",".remove_field",function(event) {
@@ -84,7 +84,10 @@ function watchForm() {
   $('form').submit(event => {
     event.preventDefault();
     const searchTerm = $('#js-search-term').val();
-    const searchState = $('#js-search-state').val();
+    let searchState = [];
+    $(".js-search-state").each(function(index){
+      searchState.push(this.value);
+    });
     const limit = $('#js-max-results').val();
     getYouTubeVideos(searchTerm, searchState, limit);
   });
