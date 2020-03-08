@@ -13,11 +13,14 @@
         <h1>National Park Finder</h1>
 
         <form id="js-form">
-            <label for="search-term">Search term</label>
-            <input type="text" name="search-term" id="js-search-term" required>
+            <label for="search-state">Search by location</label>
+            <div class = "input_fields_wrap">
+                <input type="text" name="search-state[]" id="js-search-state" placeholder="State (e.g. CA)" maxlength="2" required>
+                <button type = "button" class="add_field_button">add</button>
+            </div>
             </br>
-            <label for="search-state">Search location</label>
-            <input type="text" name="search-state" id="js-search-state" placeholder="CA (optional" maxlength="2">
+            <label for="search-term">key terms</label>
+            <input type="text" name="search-term" id="js-search-term" placeholder="beach (optional)">
             </br>
             <label for="max-results">Maximum results to return</label>
             <input type="number" name="max-results" id="js-max-results" value="10">

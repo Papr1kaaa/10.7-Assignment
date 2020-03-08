@@ -64,6 +64,23 @@ function getYouTubeVideos(query, state, limit=10) {
 }
 
 function watchForm() {
+  $(document).ready(function(event) {
+  let max_fields = 5
+  let wrapper = $(".input_fields_wrap");
+  let add_button = $(".add_field_button");
+  let x = 1
+  $(add_button).click(function(event) {
+    event.preventDefault();
+    if (x<max_fields) {
+      x++;
+      $(wrapper).append(`<div><input type="text" name="search-state[]" id="js-search-state" placeholder="State (e.g. CA)" maxlength="2"><a href="#" class="remove_field">Remove</a></div>`);
+    }
+  });
+  $(wrapper).on("click",".remove_field",function(event) {
+    event.preventDefault();
+    $(this).parent('div').remove();
+  });
+  });
   $('form').submit(event => {
     event.preventDefault();
     const searchTerm = $('#js-search-term').val();
